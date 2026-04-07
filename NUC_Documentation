@@ -1,0 +1,38 @@
+# Remoting In:
+
+Using NoMachine
+
+### Installation/Setup:
+
+Download From the link: https://download.nomachine.com/download/?id=1&platform=linux
+
+Navigate to the directory and execute the command:
+
+```sudo dpkg -i nomachine_9.3.7_1_amd64.deb```
+
+#### Headless Fix (No monitor)
+Without a monitor attatched, PC will stop generating display. Even an unpowered monitor will allow it to function though, but this is far too bulky for our purposes.
+
+NoMachine will create a virtual display if it detects no display, but by default there is still a very limited display so need to run these commands.
+
+```
+sudo systemctl disable display-manager
+sudo /etc/NX/nxserver --restart
+```
+
+The first command turns off the display for any physical monitor, and the second restarts the NoMachine server
+
+
+**IMPORTANT:** You need to re-enable the display if we want to use a monitor again using the following command
+
+```
+sudo systemctl enable --now display-manager
+```
+
+### Connecting to IBEX PC
+
+Make sure you are connected to the IBEX router.
+
+Open NoMachine, and **volta** should be an option. If not or if that causes an error, then you can click **add** in the top left and use the static assigned IP address **192.168.0.10**.
+
+
