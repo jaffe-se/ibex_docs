@@ -1,0 +1,19 @@
+ROS driver: https://github.com/ai4ce/insta360_ros_driver?tab=readme-ov-file
+
+# Operation
+`ros2 launch insta360_ros_driver bringup.launch.xml equirectangular:=true`
+
+# Modifications required:
+Comment out rotations in `src/equirectangular.cpp` lines 279 & 280
+
+Adjust crop size to reduce clipping change `config/equirectangular.yaml` line 5 to 1380
+
+To test out different crop sizes, you can use the calibration commands in the github, but you also need to comment out the same rotation in the `scripts/equirectangular.py` by **ctrl + F** for 90.
+```
+# Run the camera driver
+ros2 run insta360_ros_driver insta360_ros_driver
+# Activate image decoding
+ros2 run insta360_ros_driver decoder
+# Run the equirectangular node in calibration mode
+ros2 run insta360_ros_driver equirectangular.py --calibrate
+```
